@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taza Fish Service Jinda</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4fbff;color:#123}
+header{background:#087ea4;color:#fff;padding:24px 16px;text-align:center}
+header h1{margin:0 0 6px;font-size:28px}header p{margin:0}
+.container{max-width:900px;margin:auto;padding:18px}
+.hero{background:#fff;border-radius:18px;padding:20px;text-align:center;box-shadow:0 3px 14px #0001;margin-bottom:18px}
+.hero h2{margin:0 0 8px}.hero p{margin:5px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.card{background:#fff;border-radius:16px;padding:18px;text-align:center;box-shadow:0 3px 12px #0001}
+.fish{font-size:52px}.price{font-size:22px;font-weight:bold;margin:10px 0;color:#087ea4}
+button,.whatsapp{display:block;width:100%;border:0;border-radius:10px;padding:12px;font-size:16px;font-weight:bold;background:#18a957;color:white;cursor:pointer;text-decoration:none}
+.order{background:#fff;margin-top:18px;padding:20px;border-radius:16px;box-shadow:0 3px 12px #0001}
+label{display:block;margin-top:12px;font-weight:bold}input,textarea,select{width:100%;padding:12px;margin-top:6px;border:1px solid #ccd;border-radius:9px;font-size:16px}
+footer{text-align:center;padding:22px;color:#567}
+</style>
+</head>
+<body>
+<header>
+<h1>🐟 Taza Fish Service Jinda</h1>
+<p>ताज़ी मछली • अच्छी कीमत • आसान ऑर्डर</p>
+</header>
+<div class="container">
+<section class="hero">
+<h2>आज की मछलियाँ</h2>
+<p>घर बैठे ऑर्डर करें और WhatsApp पर भेजें।</p>
+</section>
+
+<div class="grid">
+<div class="card"><div class="fish">🐟</div><h3>रोहू</h3><div class="price">₹280 / kg</div><button onclick="choose('रोहू')">ऑर्डर करें</button></div>
+<div class="card"><div class="fish">🐟</div><h3>कतला</h3><div class="price">₹380 / kg</div><button onclick="choose('कतला')">ऑर्डर करें</button></div>
+<div class="card"><div class="fish">🐠</div><h3>रुपचंद</h3><div class="price">₹250 / kg</div><button onclick="choose('रुपचंद')">ऑर्डर करें</button></div>
+<div class="card"><div class="fish">🐠</div><h3>जासर</h3><div class="price">₹250 / kg</div><button onclick="choose('जासर')">ऑर्डर करें</button></div>
+</div>
+
+<section class="order" id="order">
+<h2>📦 ऑर्डर भेजें</h2>
+<label>मछली चुनें</label>
+<select id="fish"><option>रोहू</option><option>कतला</option><option>रुपचंद</option><option>जासर</option></select>
+<label>कितने किलो?</label>
+<input id="kg" type="number" min="1" value="1">
+<label>आपका नाम</label>
+<input id="name" placeholder="अपना नाम लिखें">
+<label>मोबाइल नंबर</label>
+<input id="phone" type="tel" placeholder="मोबाइल नंबर">
+<label>डिलीवरी पता</label>
+<textarea id="address" rows="3" placeholder="पूरा पता लिखें"></textarea>
+<br>
+<button onclick="sendOrder()">WhatsApp पर ऑर्डर भेजें</button>
+</section>
+</div>
+<footer>संपर्क: 8882742097</footer>
+
+<script>
+function choose(f){document.getElementById('fish').value=f;document.getElementById('order').scrollIntoView({behavior:'smooth'});}
+function sendOrder(){
+ const fish=document.getElementById('fish').value, kg=document.getElementById('kg').value;
+ const name=document.getElementById('name').value.trim(), phone=document.getElementById('phone').value.trim(), address=document.getElementById('address').value.trim();
+ if(!name||!phone||!address){alert('कृपया नाम, मोबाइल और पता भरें।');return;}
+ const msg=`नमस्ते, मुझे मछली ऑर्डर करनी है।%0Aमछली: ${fish}%0Aमात्रा: ${kg} kg%0Aनाम: ${name}%0Aमोबाइल: ${phone}%0Aपता: ${address}`;
+ window.open('https://wa.me/918882742097?text='+msg,'_blank');
+}
+</script>
+</body>
+</html>
